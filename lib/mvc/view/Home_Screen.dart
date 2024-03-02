@@ -16,10 +16,10 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Container(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               "Hi, what time is it?",
               style: TextStyle(
                 fontSize: 24,
@@ -103,6 +103,7 @@ class HomeScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          Get.defaultDialog(title: 'message');
           controller.increment();
         },
         child: Icon(Icons.add),
