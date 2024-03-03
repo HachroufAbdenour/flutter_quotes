@@ -103,7 +103,7 @@ class _HomeQuotesScreenState extends State<HomeQuotesScreen>
                                       Padding(
                                         padding: const EdgeInsets.all(12.0),
                                         child: Text(
-                                          homeController.quotes[index].body,
+                                          homeController.quotes[index].desc_ar,
                                           style: const TextStyle(
                                             fontSize: 24,
                                             fontWeight: FontWeight.bold,
