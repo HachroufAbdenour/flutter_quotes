@@ -1,13 +1,13 @@
-import 'package:counter_getx/models/Quote.dart';
-import 'package:counter_getx/services/Quote_Repository.dart';
+import 'package:counter_getx/models/Quote_remote.dart';
+import 'package:counter_getx/services/remote/Quote_remote_Repository.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
   var is_fav = false.obs;
-  var quotes = <Quote>[].obs;
+  var quotes = <QuoteRemote>[].obs;
   var isLoading = false.obs;
   var count = 0.obs;
-  final QuoteRepository _quoteRepository = QuoteRepository();
+  final QuoteRemoteRepository _quoteRepository = QuoteRemoteRepository();
 
   @override
   Future<void> onInit() async {
@@ -30,7 +30,7 @@ class HomeController extends GetxController {
   Future<void> fetchQuotes() async {
     isLoading.value = true;
     try {
-      List<Quote> fetchedQuotes = await _quoteRepository.fetchQuotes();
+      List<QuoteRemote> fetchedQuotes = await _quoteRepository.fetchQuotes();
       quotes.assignAll(fetchedQuotes);
     } catch (e) {
       print(e.toString());
