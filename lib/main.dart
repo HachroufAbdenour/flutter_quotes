@@ -1,7 +1,5 @@
-import 'package:counter_getx/mvc/modules/home/view.dart';
-import 'package:counter_getx/post/Post_Screen.dart';
+import 'package:counter_getx/modules/home/view.dart';
 import 'package:flutter/material.dart';
-import 'package:counter_getx/mvc/view/Home_Screen.dart';
 import 'package:get/get.dart';
 
 void main() {
