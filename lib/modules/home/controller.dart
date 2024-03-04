@@ -65,11 +65,11 @@ class HomeController extends GetxController {
     isLoading.value = true;
     try {
       UserItem userItem = await _userRepository.storeUser({
-        'user_name': usernameController.text,
+        'user_name': 'usernameController.text',
         'gender': 'male',
         'type': 'client',
-        'category_id': 1.toString(),
-        'theme_id': 1.toString(),
+        'category_id': 1,
+        'theme_id': 1,
       });
       user = userItem;
     } catch (e) {

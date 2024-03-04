@@ -63,7 +63,7 @@ class UserRepository {
       print('before :' + response.data.toString());
       // Handle the response (if needed)
       UserItem user_data = UserItem.fromJson(response.data['data']);
-      print('end :' + user_data.toString());
+      print('end :' + user_data.user.user_name);
       if (response.statusCode == 201) {
         print('POST request successful');
         return user_data;
