@@ -11,6 +11,7 @@ class HomeController extends GetxController {
 
   @override
   Future<void> onInit() async {
+    await PostQuotes();
     await fetchQuotes();
     super.onInit();
   }
@@ -32,6 +33,18 @@ class HomeController extends GetxController {
     try {
       List<QuoteRemote> fetchedQuotes = await _quoteRepository.fetchQuotes();
       quotes.assignAll(fetchedQuotes);
+    } catch (e) {
+      print(e.toString());
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+  Future<void> PostQuotes() async {
+    isLoading.value = true;
+    try {
+      await _quoteRepository.postQuote();
+      // await fetchQuotes();
     } catch (e) {
       print(e.toString());
     } finally {
