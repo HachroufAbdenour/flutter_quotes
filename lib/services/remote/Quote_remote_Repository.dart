@@ -20,7 +20,7 @@ class QuoteRemoteRepository {
       // );
       // for real device
       Response response = await _dio.get(
-        'http://192.168.8.105/api/quotes',
+        'http://192.168.8.104/api/quotes',
         options: Options(
           headers: headers,
         ),
@@ -46,7 +46,7 @@ class QuoteRemoteRepository {
           category_id: 1);
       // Use the Dio instance to send a POST request
       Response response = await _dio.post(
-        'http://10.0.2.2/api/quotes',
+        'http://192.168.8.104/api/quotes',
         data: quote_testing
             .toJson(), // Assuming QuoteRemote has a toJson() method
         options: Options(

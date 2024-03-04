@@ -7,7 +7,7 @@ class QuoteRemote {
   final int category_id;
 
   QuoteRemote({
-    required this.id,
+    this.id,
     required this.desc_ar,
     required this.desc_en,
     required this.source_ar,
