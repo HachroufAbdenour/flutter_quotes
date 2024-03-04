@@ -13,11 +13,14 @@ class QuoteRemoteRepository {
         'Accept': 'application/json',
       };
       Response response = await _dio.get(
-        'http://10.0.2.2/api/quotes',
+        'http://192.168.8.103/api/quotes',
+        // 'http://10.0.2.2/api/quotes', # emulator
         options: Options(
           headers: headers,
         ),
       );
+    print('centre');
+
       print(response.data.toString());
       List<QuoteRemote> quotes = (response.data['data'] as List)
           .map((json) => QuoteRemote.fromJson(json))

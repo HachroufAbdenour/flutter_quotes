@@ -10,7 +10,6 @@ const quotes_map = {
       "source_ar": "Prof. Julie Lehner",
       "source_en": "Dr. Toby Keebler",
       "category_id": 9,
-      "created_by": null
     },
     {
       "id": 2,
@@ -19,7 +18,6 @@ const quotes_map = {
       "source_ar": "Dr. Vella Eichmann III",
       "source_en": "Dr. Jovany Abshire",
       "category_id": 2,
-      "created_by": null
     },
     {
       "id": 3,
@@ -28,7 +26,6 @@ const quotes_map = {
       "source_ar": "Kaylah Doyle",
       "source_en": "Tamara Stoltenberg",
       "category_id": 3,
-      "created_by": null
     },
     {
       "id": 4,
@@ -37,7 +34,6 @@ const quotes_map = {
       "source_ar": "Mathilde Bradtke",
       "source_en": "Cassie Thiel",
       "category_id": 4,
-      "created_by": null
     },
     {
       "id": 5,
@@ -46,7 +42,6 @@ const quotes_map = {
       "source_ar": "Mr. Ephraim Rogahn I",
       "source_en": "Braden Langworth",
       "category_id": 3,
-      "created_by": null
     },
     {
       "id": 6,
@@ -55,7 +50,6 @@ const quotes_map = {
       "source_ar": "Fred Steuber PhD",
       "source_en": "Nathan Pfeffer",
       "category_id": 1,
-      "created_by": null
     },
     {
       "id": 7,
@@ -64,7 +58,6 @@ const quotes_map = {
       "source_ar": "Prof. Selmer McGlynn",
       "source_en": "Ms. Isobel Lockman IV",
       "category_id": 7,
-      "created_by": null
     },
     {
       "id": 8,
@@ -73,7 +66,6 @@ const quotes_map = {
       "source_ar": "Dr. Marty Durgan",
       "source_en": "Alycia Ullrich",
       "category_id": 1,
-      "created_by": null
     },
     {
       "id": 9,
@@ -82,7 +74,6 @@ const quotes_map = {
       "source_ar": "Mauricio Christiansen",
       "source_en": "Kariane Greenfelder",
       "category_id": 9,
-      "created_by": null
     },
     {
       "id": 10,
@@ -91,7 +82,6 @@ const quotes_map = {
       "source_ar": "Cecil Schneider",
       "source_en": "Daniella Buckridge II",
       "category_id": 7,
-      "created_by": null
     }
   ]
 };

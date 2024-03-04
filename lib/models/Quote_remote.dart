@@ -1,5 +1,5 @@
 class QuoteRemote {
-  final int id;
+  final int? id;
   final String desc_ar;
   final String desc_en;
   final String source_ar;
