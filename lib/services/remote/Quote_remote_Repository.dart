@@ -11,12 +11,21 @@ class QuoteRemoteRepository {
         // 'Content-type': 'application/json',
         'Accept': 'application/json',
       };
+      // for emolator
+      // Response response = await _dio.get(
+      //   'http://10.0.2.2/api/quotes',
+      //   options: Options(
+      //     headers: headers,
+      //   ),
+      // );
+      // for real device
       Response response = await _dio.get(
-        'http://10.0.2.2/api/quotes',
+        'http://192.168.8.105/api/quotes',
         options: Options(
           headers: headers,
         ),
       );
+      print('response : ${response.data}');
       List<QuoteRemote> quotes = (response.data['data'] as List)
           .map((json) => QuoteRemote.fromJson(json))
           .toList();

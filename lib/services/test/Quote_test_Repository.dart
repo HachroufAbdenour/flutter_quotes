@@ -1,7 +1,7 @@
 import 'package:counter_getx/models/Quote.dart';
 import 'package:dio/dio.dart';
 
-const quotes_map = {
+const index_quotes = {
   "data": [
     {
       "id": 1,
