@@ -20,7 +20,7 @@ class QuoteRemoteRepository {
       // );
       // for real device
       Response response = await _dio.get(
-        'http://192.168.8.104/api/quotes',
+        'http://192.168.8.105/api/quotes',
         options: Options(
           headers: headers,
         ),
