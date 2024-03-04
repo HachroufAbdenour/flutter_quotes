@@ -25,4 +25,15 @@ class QuoteRemote {
       category_id: json['category_id'],
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'desc_ar': desc_ar,
+      'desc_en': desc_en,
+      'source_ar': source_ar,
+      'source_en': source_en,
+      'category_id': category_id,
+    };
+  }
 }

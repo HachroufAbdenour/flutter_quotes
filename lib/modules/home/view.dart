@@ -73,7 +73,7 @@ class _HomeQuotesScreenState extends State<HomeQuotesScreen>
                     decoration: const BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage(
-                          "assets/images/lion.jpg",
+                          "assets/images/loin.jpg",
                         ),
                         fit: BoxFit.cover,
                       ),
