@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class OnboardingScreen extends StatelessWidget {
   final List<PageInfo> pages = [
@@ -40,11 +41,16 @@ class OnboardingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          Image.asset(
+            pageInfo.imagePath,
+            width: 400, // Adjust width as needed
+            height: 450, // Adjust height as needed
+          ),
+          SizedBox(height: 16.0),
           Text(
             pageInfo.title,
             style: TextStyle(
