@@ -1,3 +1,7 @@
+import 'package:counter_getx/models/Category.dart';
+import 'package:counter_getx/models/Theme.dart';
+import 'package:flutter/foundation.dart';
+
 class User {
   final int? id;
   final String user_name;
@@ -23,14 +27,14 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-      id: json['id'] ?? null,
+      id: json['id'],
       user_name: json['user_name'],
-      password: json['password'] ?? null,
-      email: json['email'] ?? null,
-      birth_date: json['birth_date'] ?? null,
-      nationality: json['nationality'] ?? null,
+      password: json['password'],
+      email: json['email'],
+      birth_date: json['birth_date'],
+      nationality: json['nationality'],
       gender: json['gender'],
-      status: json['status'] ?? null,
+      status: json['status'],
       type: json['type'],
     );
   }
@@ -46,6 +50,34 @@ class User {
       'gender': gender,
       'status': status,
       'type': type,
+    };
+  }
+}
+
+class UserItem {
+  late User user;
+  late CategoryItem? category;
+  late Theme? theme;
+
+  UserItem({
+    required this.user,
+    required this.category,
+    required this.theme,
+  });
+
+  factory UserItem.fromJson(Map<String, dynamic> json) {
+    return UserItem(
+      user: User.fromJson(json),
+      category: CategoryItem.fromJson(json['category']),
+      theme: Theme.fromJson(json['theme']),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'user': user.toJson(),
+      'category': category!.toJson(),
+      'theme': theme!.toJson(),
     };
   }
 }

@@ -41,7 +41,7 @@ class _CustomGenderFieldState extends State<CustomGenderField> {
                       });
                     },
                   ),
-                  Text('Male'),
+                  const Text('Male'),
                   const SizedBox(width: 16.0),
                   Radio<String>(
                     value: 'female',

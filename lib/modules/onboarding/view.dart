@@ -1,3 +1,4 @@
+import 'package:counter_getx/modules/home/controller.dart';
 import 'package:counter_getx/modules/onboarding/widget/custombutton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -43,7 +44,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   ];
 
   var index = 0;
-  TextEditingController usernameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +95,9 @@ class OnboardingPage extends StatelessWidget {
   final int index;
   final PageInfo pageInfo;
 
-  const OnboardingPage({Key? key, required this.index, required this.pageInfo})
+  HomeController homeController = Get.put(HomeController());
+
+  OnboardingPage({Key? key, required this.index, required this.pageInfo})
       : super(key: key);
 
   @override
@@ -113,7 +115,13 @@ class OnboardingPage extends StatelessWidget {
           const SizedBox(height: 16.0),
           index == 3
               ? CustomButton(
-                  icon: Icon(Icons.abc), label: 'label', onPressed: () {})
+                  icon: const Icon(Icons.slow_motion_video_sharp),
+                  label: 'Start',
+                  onPressed: () {
+                    homeController.postUser();
+                    Get.to(() => HomeQuotesScreen());
+                  },
+                )
               : index == 2
                   ? CustomGenderField()
                   : index == 1
