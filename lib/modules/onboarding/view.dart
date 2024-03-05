@@ -33,6 +33,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         title: 'Page 3',
         description: 'Description for Page 3',
         imagePath: 'assets/images/image3.png'),
+    PageInfo(
+        title: 'Page 3',
+        description: 'Description for Page 3',
+        imagePath: 'assets/images/image3.png'),
   ];
 
   var index = 0;
@@ -102,7 +106,7 @@ class OnboardingPage extends StatelessWidget {
           height: 450,
         ),
         const SizedBox(height: 16.0),
-        index == 2
+        index == 3
             ? SizedBox(
                 width: MediaQuery.of(context).size.width * 0.6,
                 child: FloatingActionButton.extended(
@@ -115,6 +119,7 @@ class OnboardingPage extends StatelessWidget {
                     'Start',
                     style: TextStyle(
                       color: Colors.white,
+                      fontSize: 25,
                     ),
                   ),
                   onPressed: () {
