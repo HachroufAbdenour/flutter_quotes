@@ -11,7 +11,7 @@ class HomeController extends GetxController {
 
   @override
   Future<void> onInit() async {
-    await PostQuotes();
+    //  await PostQuotes();
     await fetchQuotes();
     super.onInit();
   }
