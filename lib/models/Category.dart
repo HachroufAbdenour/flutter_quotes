@@ -4,14 +4,14 @@ class Category {
   final int? id;
   final String name;
   final String logo;
-  final int isFree;
+  final int is_free;
   final String type;
 
   Category({
     this.id,
     required this.name,
     required this.logo,
-    required this.isFree,
+    required this.is_free,
     required this.type,
   });
 
@@ -20,7 +20,7 @@ class Category {
       id: json['id'],
       name: json['name'],
       logo: json['logo'],
-      isFree: json['is_free'],
+      is_free: json['is_free'],
       type: json['type'],
     );
   }
@@ -30,7 +30,7 @@ class Category {
       'id': id,
       'name': name,
       'logo': logo,
-      'is_free': isFree,
+      'is_free': is_free,
       'type': type,
     };
   }

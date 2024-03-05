@@ -1,4 +1,6 @@
+import 'package:counter_getx/modules/home/controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CustomGenderField extends StatefulWidget {
   @override
@@ -7,6 +9,8 @@ class CustomGenderField extends StatefulWidget {
 
 class _CustomGenderFieldState extends State<CustomGenderField> {
   String? selectedGender;
+
+  HomeController homeController = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +21,7 @@ class _CustomGenderFieldState extends State<CustomGenderField> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Center(
+            const Center(
               child: Text(
                 'Select Gender',
                 style: TextStyle(
@@ -37,6 +41,7 @@ class _CustomGenderFieldState extends State<CustomGenderField> {
                     groupValue: selectedGender,
                     onChanged: (value) {
                       setState(() {
+                        homeController.gender.value = value!;
                         selectedGender = value;
                       });
                     },
@@ -48,6 +53,7 @@ class _CustomGenderFieldState extends State<CustomGenderField> {
                     groupValue: selectedGender,
                     onChanged: (value) {
                       setState(() {
+                        homeController.gender.value = value!;
                         selectedGender = value;
                       });
                     },

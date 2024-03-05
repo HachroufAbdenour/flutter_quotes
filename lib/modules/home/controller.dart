@@ -9,18 +9,18 @@ import 'package:get/get.dart';
 class HomeController extends GetxController {
   var is_fav = false.obs;
   var quotes = <Quote>[].obs;
-  var isLoading = false.obs;
+  var is_loading = false.obs;
   var count = 0.obs;
   late UserItem user;
 
   TextEditingController usernameController = TextEditingController();
-  var is_male = false.obs;
+  var gender = 'male'.obs;
   final QuoteRepository _quoteRepository = QuoteRepository();
   final UserRepository _userRepository = UserRepository();
 
   @override
   Future<void> onInit() async {
-    //   await PostQuotes();
+    // await PostQuotes();
     await fetchQuotes();
     super.onInit();
   }
@@ -38,44 +38,44 @@ class HomeController extends GetxController {
   }
 
   Future<void> fetchQuotes() async {
-    isLoading.value = true;
+    is_loading.value = true;
     try {
       List<Quote> fetchedQuotes = await _quoteRepository.fetchQuotes();
       quotes.assignAll(fetchedQuotes);
     } catch (e) {
       print(e.toString());
     } finally {
-      isLoading.value = false;
+      is_loading.value = false;
     }
   }
 
   Future<void> PostQuotes() async {
-    isLoading.value = true;
+    is_loading.value = true;
     try {
       await _quoteRepository.postQuote();
       // await fetchQuotes();
     } catch (e) {
       print(e.toString());
     } finally {
-      isLoading.value = false;
+      is_loading.value = false;
     }
   }
 
   Future<void> postUser() async {
-    isLoading.value = true;
+    is_loading.value = true;
     try {
       UserItem userItem = await _userRepository.storeUser({
-        'user_name': 'usernameController.text',
-        'gender': 'male',
+        'user_name': usernameController.text,
+        'gender': gender.value,
         'type': 'client',
-        'category_id': 1,
-        'theme_id': 1,
+        'category_id': 2,
+        'theme_id': 2,
       });
       user = userItem;
     } catch (e) {
       print(e.toString());
     } finally {
-      isLoading.value = false;
+      is_loading.value = false;
     }
   }
 }

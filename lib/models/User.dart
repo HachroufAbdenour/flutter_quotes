@@ -56,8 +56,8 @@ class User {
 
 class UserItem {
   late User user;
-  late CategoryItem? category;
-  late Theme? theme;
+  late CategoryItem category;
+  late Theme theme;
 
   UserItem({
     required this.user,
@@ -76,8 +76,8 @@ class UserItem {
   Map<String, dynamic> toJson() {
     return {
       'user': user.toJson(),
-      'category': category!.toJson(),
-      'theme': theme!.toJson(),
+      'category': category.toJson(),
+      'theme': theme.toJson(),
     };
   }
 }

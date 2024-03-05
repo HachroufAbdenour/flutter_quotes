@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:counter_getx/modules/home/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,7 +32,7 @@ class _HomeQuotesScreenState extends State<HomeQuotesScreen>
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => homeController.isLoading.value
+      () => homeController.is_loading.value
           ? const Center(child: CircularProgressIndicator())
           : Scaffold(
               appBar: AppBar(
@@ -89,7 +91,7 @@ class _HomeQuotesScreenState extends State<HomeQuotesScreen>
                         return Padding(
                           padding: const EdgeInsets.only(top: 150),
                           child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Padding(
@@ -111,9 +113,9 @@ class _HomeQuotesScreenState extends State<HomeQuotesScreen>
                                           ),
                                         ),
                                       ),
-                                      const Text(
-                                        '- nilson mandila',
-                                        style: TextStyle(
+                                      Text(
+                                        homeController.quotes[index].source_ar,
+                                        style: const TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white,
@@ -124,45 +126,97 @@ class _HomeQuotesScreenState extends State<HomeQuotesScreen>
                                   ),
                                 ),
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  IconButton(
-                                    icon: Container(
-                                      padding: const EdgeInsets.all(8),
-                                      decoration: BoxDecoration(
-                                        //     shape: BoxShape.circle,
-                                        borderRadius: BorderRadius.circular(
-                                            10), // Shape of the container (circle for a rounded background)
-                                        color: Colors
-                                            .white, // Background color for the icon
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 120),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    IconButton(
+                                      icon: Container(
+                                        padding: const EdgeInsets.all(8),
+                                        decoration: BoxDecoration(
+                                          //     shape: BoxShape.circle,
+                                          borderRadius: BorderRadius.circular(
+                                              10), // Shape of the container (circle for a rounded background)
+                                          color: Colors
+                                              .white, // Background color for the icon
+                                        ),
+                                        child: const Icon(
+                                          Icons.share,
+                                          color: Colors
+                                              .black, // Color of the crown icon
+                                        ),
                                       ),
-                                      child: const Icon(
-                                        Icons.share,
-                                        color: Colors
-                                            .black, // Color of the crown icon
+                                      onPressed: () {},
+                                    ),
+                                    IconButton(
+                                      onPressed: () {
+                                        homeController.changeFav();
+                                      },
+                                      icon: Icon(
+                                        Icons.heart_broken_rounded,
+                                        size: 40,
+                                        color: homeController.is_fav.value
+                                            ? Colors.red
+                                            : Colors.white,
                                       ),
                                     ),
-                                    onPressed: () {},
-                                  ),
-                                  IconButton(
-                                    onPressed: () {
-                                      homeController.changeFav();
-                                    },
-                                    icon: Icon(
-                                      Icons.heart_broken_rounded,
-                                      size: 40,
-                                      color: homeController.is_fav.value
-                                          ? Colors.red
-                                          : Colors.white,
-                                    ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               )
                             ],
                           ),
                         );
                       },
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 20, left: 20),
+                      child: Row(
+                        children: [
+                          FloatingActionButton.extended(
+                            backgroundColor: Colors.white,
+                            icon: const Icon(
+                              Icons.category,
+                              color: Colors.black,
+                            ),
+                            label: Text(
+                              homeController.user.category.category.name,
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 25,
+                              ),
+                            ),
+                            onPressed: () {
+                              // homeController.fetchQuotesCategories();
+                            },
+                          ),
+                          const SizedBox(
+                            width: 130,
+                          ),
+                          FloatingActionButton(
+                            backgroundColor: Colors.white,
+                            onPressed: () {},
+                            child: const Icon(
+                              Icons.palette,
+                              color: Colors.black,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          FloatingActionButton(
+                            backgroundColor: Colors.white,
+                            onPressed: () {},
+                            child: const Icon(
+                              Icons.person,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   if (homeController.is_fav.value)

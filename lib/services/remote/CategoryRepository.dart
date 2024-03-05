@@ -1,12 +1,12 @@
-import 'package:counter_getx/models/Quote.dart';
+import 'package:counter_getx/models/Category.dart';
 import 'package:dio/dio.dart';
 
 import '../../core/values/routes.dart';
 
-class QuoteRepository {
+class CategoryRepository {
   final Dio _dio = Dio();
 
-  Future<List<Quote>> fetchQuotes() async {
+  Future<List<Category>> fetchQuotesCategories() async {
     try {
       Map<String, dynamic> headers = {
         // 'Authorization': 'Bearer YourAccessToken',
@@ -15,34 +15,33 @@ class QuoteRepository {
       };
 
       Response response = await _dio.get(
-        Routes.quotes,
+        '${Routes.categories}+/quote',
         options: Options(
           headers: headers,
         ),
       );
 
-      List<Quote> quotes = (response.data['data'] as List)
-          .map((json) => Quote.fromJson(json))
+      List<Category> categories = (response.data['data'] as List)
+          .map((json) => Category.fromJson(json))
           .toList();
-      return quotes;
+      return categories;
     } catch (e) {
-      throw Exception('Failed to fetch quotes');
+      throw Exception('Failed to fetch categories');
     }
   }
 
-  Future<void> postQuote() async {
+  Future<void> postQuoteCategory() async {
     try {
-      Quote post_test = Quote(
+      Category post_test = Category(
         id: null,
-        desc_ar: 'test quote',
-        desc_en: 'test quote 2',
-        source_ar: 'test source',
-        source_en: 'test source 2',
-        category_id: 4,
+        name: 'test name',
+        logo: 'test logo',
+        is_free: 1,
+        type: 'quote',
       );
 
       Response response = await _dio.post(
-        Routes.quotes,
+        Routes.categories,
         data: post_test.toJson(),
         options: Options(
           headers: {
@@ -60,7 +59,7 @@ class QuoteRepository {
       }
     } catch (e) {
       print('Error: $e');
-      throw e; // Rethrow the error to be caught by the calling function
+      throw e;
     }
   }
 }
