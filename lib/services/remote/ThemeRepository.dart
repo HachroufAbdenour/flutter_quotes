@@ -20,7 +20,7 @@ class ThemeRepository {
           headers: headers,
         ),
       );
-
+      print("Themes:${response.data['data']}");
       List<Theme> themes = (response.data['data'] as List)
           .map((json) => Theme.fromJson(json))
           .toList();

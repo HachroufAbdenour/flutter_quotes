@@ -2,10 +2,10 @@ abstract class Routes {
   // domain url
   static String domain = 'http://192.168.8.104/';
   static String domain_test = 'http://192.168.8.104/';
-  static String domain_midou = 'http://192.168.188.103/';
+  static String domain_midou = 'http://10.42.0.147/';
   static String domain_localhost = 'http://192.168.8.104/';
   // base url
-  static String base = domain;
+  static String base = domain_midou;
   //  url
   static String quotes = '${base}api/quotes/';
   static String users = '${base}api/users/';

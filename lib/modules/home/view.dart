@@ -1,7 +1,8 @@
-import 'dart:ffi';
-
 import 'package:counter_getx/modules/home/controller.dart';
+import 'package:counter_getx/modules/home/widgets/bottom_slide_dialog_category.dart';
+import 'package:counter_getx/modules/home/widgets/bottom_slide_dialog_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
@@ -40,7 +41,7 @@ class _HomeQuotesScreenState extends State<HomeQuotesScreen>
                 elevation: 0,
                 title: Obx(
                   () => Text(
-                    '${homeController.count.value.toString()}/${homeController.quotes.length.toString()}',
+                    '${(homeController.count.value + 1).toString()}/${(homeController.fetchedQuotes.length).toString()}',
                     style: const TextStyle(
                       color: Colors.white,
                     ),
@@ -86,7 +87,7 @@ class _HomeQuotesScreenState extends State<HomeQuotesScreen>
                       onPageChanged: (value) =>
                           homeController.changeCount(value),
                       scrollDirection: Axis.vertical,
-                      itemCount: homeController.quotes.length,
+                      itemCount: homeController.fetchedQuotes.length,
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: const EdgeInsets.only(top: 150),
@@ -105,7 +106,8 @@ class _HomeQuotesScreenState extends State<HomeQuotesScreen>
                                       Padding(
                                         padding: const EdgeInsets.all(12.0),
                                         child: Text(
-                                          homeController.quotes[index].desc_ar,
+                                          homeController
+                                              .fetchedQuotes[index].desc_ar,
                                           style: const TextStyle(
                                             fontSize: 24,
                                             fontWeight: FontWeight.bold,
@@ -114,7 +116,8 @@ class _HomeQuotesScreenState extends State<HomeQuotesScreen>
                                         ),
                                       ),
                                       Text(
-                                        homeController.quotes[index].source_ar,
+                                        homeController
+                                            .fetchedQuotes[index].source_ar,
                                         style: const TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold,
@@ -154,7 +157,7 @@ class _HomeQuotesScreenState extends State<HomeQuotesScreen>
                                         homeController.changeFav();
                                       },
                                       icon: Icon(
-                                        Icons.heart_broken_rounded,
+                                        Icons.favorite,
                                         size: 40,
                                         color: homeController.is_fav.value
                                             ? Colors.red
@@ -173,32 +176,57 @@ class _HomeQuotesScreenState extends State<HomeQuotesScreen>
                   Align(
                     alignment: Alignment.bottomLeft,
                     child: Padding(
-                      padding: const EdgeInsets.only(bottom: 20, left: 20),
+                      padding: const EdgeInsets.only(
+                        left: 20,
+                        bottom: 20,
+                      ),
+                      child: FloatingActionButton.extended(
+                        backgroundColor: Colors.white,
+                        icon: const Icon(
+                          Icons.category,
+                          color: Colors.black,
+                        ),
+                        label: Text(
+                          homeController.fetchedCategoryName.value,
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 25,
+                          ),
+                        ),
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return BottomSlideDialogCategory(
+                                options: homeController.categories,
+                              );
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                        bottom: 20,
+                        left: 270,
+                      ),
                       child: Row(
                         children: [
-                          FloatingActionButton.extended(
-                            backgroundColor: Colors.white,
-                            icon: const Icon(
-                              Icons.category,
-                              color: Colors.black,
-                            ),
-                            label: Text(
-                              homeController.user.category.category.name,
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 25,
-                              ),
-                            ),
-                            onPressed: () {
-                              // homeController.fetchQuotesCategories();
-                            },
-                          ),
-                          const SizedBox(
-                            width: 130,
-                          ),
                           FloatingActionButton(
                             backgroundColor: Colors.white,
-                            onPressed: () {},
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return BottomSlideDialogTheme(
+                                    options: homeController.themes,
+                                  );
+                                },
+                              );
+                            },
                             child: const Icon(
                               Icons.palette,
                               color: Colors.black,

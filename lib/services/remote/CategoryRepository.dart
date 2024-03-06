@@ -13,14 +13,13 @@ class CategoryRepository {
         // 'Content-type': 'application/json',
         'Accept': 'application/json',
       };
-
       Response response = await _dio.get(
-        '${Routes.categories}+/quote',
+        Routes.categories,
         options: Options(
           headers: headers,
         ),
       );
-
+      print("Categories:${response.data['data']}");
       List<Category> categories = (response.data['data'] as List)
           .map((json) => Category.fromJson(json))
           .toList();
