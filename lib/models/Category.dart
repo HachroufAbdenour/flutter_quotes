@@ -16,6 +16,7 @@ class Category {
   });
 
   factory Category.fromJson(Map<String, dynamic> json) {
+    
     return Category(
       id: json['id'],
       name: json['name'],
@@ -46,6 +47,7 @@ class CategoryItem {
   });
 
   factory CategoryItem.fromJson(Map<String, dynamic> json) {
+
     return CategoryItem(
       category: Category.fromJson(json),
       quotes: List<Quote>.from(

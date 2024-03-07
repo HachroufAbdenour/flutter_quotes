@@ -2,21 +2,22 @@ import 'package:counter_getx/models/Category.dart';
 
 class Theme {
   final int? id;
-  final String font_en;
+  final String font;
   final String image;
   final int isFree;
 
   Theme({
     this.id,
-    required this.font_en,
+    required this.font,
     required this.image,
     required this.isFree,
   });
 
   factory Theme.fromJson(Map<String, dynamic> json) {
+    
     return Theme(
       id: json['id'],
-      font_en: json['font_en'],
+      font: json['font'],
       image: json['image'],
       isFree: json['is_free'],
     );
@@ -25,7 +26,7 @@ class Theme {
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'font_en': font_en,
+      'font': font,
       'image': image,
       'is_free': isFree,
     };

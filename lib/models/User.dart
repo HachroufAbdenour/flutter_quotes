@@ -9,7 +9,7 @@ class User {
   final String? birth_date;
   final String? nationality;
   final String gender;
-  final String? status;
+  final String status;
   final String type;
 
   User({
@@ -18,32 +18,13 @@ class User {
     this.password,
     this.email,
     this.birth_date,
-    this.nationality,
+    required this.nationality,
     required this.gender,
-    this.status,
+    required this.status,
     required this.type,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
-    print("id" +
-        json['id'].toString() +
-        "user_name" +
-        json['user_name'].toString() +
-        "password" +
-        json['password'].toString() +
-        "email" +
-        json['email'].toString() +
-        "birth_date" +
-        json['birth_date'].toString() +
-        "nationality" +
-        json['nationality'].toString() +
-        "gender" +
-        json['gender'].toString() +
-        "status" +
-        json['status'].toString() +
-        "type" +
-        json['type'].toString());
-
     return User(
       id: json['id'],
       user_name: json['user_name'],
@@ -74,8 +55,8 @@ class User {
 
 class UserItem {
   late User user;
-  late CategoryItem? category;
-  late Theme? theme;
+  late CategoryItem category;
+  late Theme theme;
 
   UserItem({
     required this.user,
@@ -84,6 +65,15 @@ class UserItem {
   });
 
   factory UserItem.fromJson(Map<String, dynamic> json) {
+    String user_ = User.fromJson(json).toString();
+    print("user_ = " + user_);
+
+    String category_ = CategoryItem.fromJson(json['category']).toString();
+    print("category_ = " + user_);
+
+    String theme_ = Theme.fromJson(json['theme']).toString();
+    print("theme_ = " + user_);
+
     return UserItem(
       user: User.fromJson(json),
       category: CategoryItem.fromJson(json['category']),
@@ -94,8 +84,8 @@ class UserItem {
   Map<String, dynamic> toJson() {
     return {
       'user': user.toJson(),
-      'category': category!.toJson(),
-      'theme': theme!.toJson(),
+      'category': category.toJson(),
+      'theme': theme.toJson(),
     };
   }
 }

@@ -16,6 +16,7 @@ class Quote {
   });
 
   factory Quote.fromJson(Map<String, dynamic> json) {
+
     return Quote(
       id: json['id'],
       desc_ar: json['desc_ar'],

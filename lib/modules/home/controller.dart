@@ -12,6 +12,8 @@ class HomeController extends GetxController {
   var isLoading = false.obs;
   var count = 0.obs;
   late UserItem user;
+  var fetchCategoryName = ''.obs;
+  var fetchedQuotes = [].obs;
 
   TextEditingController usernameController = TextEditingController();
   var is_male = false.obs;
@@ -21,7 +23,8 @@ class HomeController extends GetxController {
   @override
   Future<void> onInit() async {
     // await postUser();
-    await fetchQuotes();
+    // await fetchQuotes();
+    
     super.onInit();
   }
 
@@ -76,7 +79,10 @@ class HomeController extends GetxController {
         // 'birth_date': '2000-12-12',
         // 'nationality': 'algeria'
       });
-      user = userItem;
+      // user = userItem;
+
+      fetchCategoryName.value = userItem.category.category.name;
+      fetchedQuotes.value = userItem.category.quotes;
     } catch (e) {
       print(e.toString());
     } finally {

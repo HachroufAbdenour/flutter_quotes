@@ -85,7 +85,7 @@ class _HomeQuotesScreenState extends State<HomeQuotesScreen>
                       onPageChanged: (value) =>
                           homeController.changeCount(value),
                       scrollDirection: Axis.vertical,
-                      itemCount: homeController.quotes.length,
+                      itemCount: homeController.fetchedQuotes.length,
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: const EdgeInsets.only(top: 150),
@@ -104,7 +104,7 @@ class _HomeQuotesScreenState extends State<HomeQuotesScreen>
                                       Padding(
                                         padding: const EdgeInsets.all(12.0),
                                         child: Text(
-                                          homeController.quotes[index].desc_ar,
+                                          homeController.fetchedQuotes[index].desc_ar,
                                           style: const TextStyle(
                                             fontSize: 24,
                                             fontWeight: FontWeight.bold,
@@ -113,7 +113,7 @@ class _HomeQuotesScreenState extends State<HomeQuotesScreen>
                                         ),
                                       ),
                                       Text(
-                                        homeController.quotes[index].source_ar,
+                                        homeController.fetchedQuotes[index].source_ar,
                                         style: TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold,
@@ -166,57 +166,59 @@ class _HomeQuotesScreenState extends State<HomeQuotesScreen>
                       },
                     ),
                   ),
-                  Align(
-                    alignment: Alignment.bottomLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 20, left: 20),
-                      child: Row(
-                        children: [
-                          FloatingActionButton.extended(
-                            backgroundColor:
-                                const Color.fromARGB(255, 248, 163, 163),
-                            icon: const Icon(
-                              Icons.category,
-                              color: Colors.black,
-                            ),
-                            label: Text(
-                              "homeController.user.category!.category.name",
-                              style: const TextStyle(
+                  Obx(
+                    () => Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 20, left: 20),
+                        child: Row(
+                          children: [
+                            FloatingActionButton.extended(
+                              backgroundColor:
+                                  const Color.fromARGB(255, 248, 163, 163),
+                              icon: const Icon(
+                                Icons.category,
                                 color: Colors.black,
-                                fontSize: 25,
+                              ),
+                              label: Text(
+                                homeController.fetchCategoryName.value,
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 25,
+                                ),
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => CategoriesScreen()),
+                                );
+                              },
+                            ),
+                            const SizedBox(
+                              width: 130,
+                            ),
+                            FloatingActionButton(
+                              backgroundColor: Colors.white,
+                              onPressed: () {},
+                              child: const Icon(
+                                Icons.palette,
+                                color: Colors.black,
                               ),
                             ),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => CategoriesScreen()),
-                              );
-                            },
-                          ),
-                          const SizedBox(
-                            width: 130,
-                          ),
-                          FloatingActionButton(
-                            backgroundColor: Colors.white,
-                            onPressed: () {},
-                            child: const Icon(
-                              Icons.palette,
-                              color: Colors.black,
+                            const SizedBox(
+                              width: 10,
                             ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          FloatingActionButton(
-                            backgroundColor: Colors.white,
-                            onPressed: () {},
-                            child: const Icon(
-                              Icons.person,
-                              color: Colors.black,
+                            FloatingActionButton(
+                              backgroundColor: Colors.white,
+                              onPressed: () {},
+                              child: const Icon(
+                                Icons.person,
+                                color: Colors.black,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),

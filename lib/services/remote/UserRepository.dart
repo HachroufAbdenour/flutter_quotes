@@ -54,14 +54,15 @@ class UserRepository {
       );
       print('before :' + response.data.toString());
       // Handle the response (if needed)
-      UserItem user_data = UserItem.fromJson(response.data['data']);
-      print('end :' + user_data.user.user_name);
+      print('eeeeeee' + UserItem.fromJson(response.data['data']).toString());
+      UserItem userData = UserItem.fromJson(response.data['data']);
+      print('end : d ');
       if (response.statusCode == 201) {
         print('POST request successful');
-        return user_data;
+        return userData;
       } else {
         print('Error 1: ${response.statusCode}');
-        return user_data;
+        return userData;
       }
     } catch (e) {
       print('Error 2: $e');
