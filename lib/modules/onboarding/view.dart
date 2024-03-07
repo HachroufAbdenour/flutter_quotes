@@ -1,7 +1,11 @@
-import 'package:counter_getx/modules/home/view.dart';
+import 'package:counter_getx/modules/home/controller.dart';
+import 'package:counter_getx/modules/onboarding/widget/custombutton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:counter_getx/modules/home/view.dart';
+import 'package:counter_getx/modules/onboarding/widget/custom_textfieldgender.dart';
+import 'package:counter_getx/modules/onboarding/widget/custom_textfield.dart';
 
 class PageInfo {
   final String title;
@@ -34,7 +38,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         description: 'Description for Page 3',
         imagePath: 'assets/images/image3.png'),
     PageInfo(
-        title: 'Page 3',
+        title: 'Page 4',
         description: 'Description for Page 3',
         imagePath: 'assets/images/image3.png'),
   ];
@@ -67,7 +71,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ),
             backgroundColor: Colors.grey,
             progressColor: Colors.amber,
-            barRadius: const Radius.circular(20),
+            barRadius: const Radius.circular(50),
           ),
         ),
         centerTitle: true,
@@ -88,66 +92,60 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 }
 
 class OnboardingPage extends StatelessWidget {
-  final PageInfo pageInfo;
   final int index;
+  final PageInfo pageInfo;
 
-  const OnboardingPage({Key? key, required this.pageInfo, required this.index})
+  HomeController homeController = Get.put(HomeController());
+
+  OnboardingPage({Key? key, required this.index, required this.pageInfo})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Image.asset(
-          pageInfo.imagePath,
-          width: 400,
-          height: 450,
-        ),
-        const SizedBox(height: 16.0),
-        index == 3
-            ? SizedBox(
-                width: MediaQuery.of(context).size.width * 0.6,
-                child: FloatingActionButton.extended(
-                  backgroundColor: Colors.amber,
-                  icon: const Icon(
-                    Icons.add,
-                    color: Colors.white,
-                  ),
-                  label: const Text(
-                    'Start',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 25,
-                    ),
-                  ),
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Image.asset(
+            pageInfo.imagePath,
+            width: 400,
+            height: 450,
+          ),
+          const SizedBox(height: 16.0),
+          index == 3
+              ? CustomButton(
+                  icon: const Icon(Icons.slow_motion_video_sharp),
+                  label: 'Start',
                   onPressed: () {
-                    Get.offAll(() => HomeQuotesScreen());
+                    homeController.postUser();
+                    Get.to(() => HomeQuotesScreen());
                   },
-                ),
-              )
-            : Column(
-                // mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(
-                    pageInfo.title,
-                    style: const TextStyle(
-                      fontSize: 24.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 16.0),
-                  Text(
-                    pageInfo.description,
-                    style: const TextStyle(
-                      fontSize: 16.0,
-                    ),
-                    textAlign: TextAlign.center,
-                  )
-                ],
-              )
-      ],
+                )
+              : index == 2
+                  ? CustomGenderField()
+                  : index == 1
+                      ? Column(
+                          children: [
+                            const SizedBox(height: 8.0),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 50.0),
+                              child: CustomTextField(
+                                labelText: 'Enter Username',
+                              ),
+                            ),
+                          ],
+                        )
+                      : Text(
+                          "hi Welcome in Our Quotes App ",
+                          style: const TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+        ],
+      ),
     );
   }
 }

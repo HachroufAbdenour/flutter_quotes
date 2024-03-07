@@ -1,10 +1,12 @@
-import 'package:counter_getx/models/Quote_remote.dart';
+import 'package:counter_getx/models/Quote.dart';
 import 'package:dio/dio.dart';
 
-class QuoteRemoteRepository {
+import '../../core/values/routes.dart';
+
+class QuoteRepository {
   final Dio _dio = Dio();
 
-  Future<List<QuoteRemote>> fetchQuotes() async {
+  Future<List<Quote>> fetchQuotes() async {
     try {
       Map<String, dynamic> headers = {
         // 'Authorization': 'Bearer YourAccessToken',
@@ -20,14 +22,14 @@ class QuoteRemoteRepository {
       // );
       // for real device
       Response response = await _dio.get(
-        'http://192.168.8.102/api/quotes',
+        Routes.quotes,
         options: Options(
           headers: headers,
         ),
       );
-      print('response : ${response.data}');
-      List<QuoteRemote> quotes = (response.data['data'] as List)
-          .map((json) => QuoteRemote.fromJson(json))
+      // print('response : ${response.data}');
+      List<Quote> quotes = (response.data['data'] as List)
+          .map((json) => Quote.fromJson(json))
           .toList();
       return quotes;
     } catch (e) {
@@ -37,18 +39,18 @@ class QuoteRemoteRepository {
 
   Future<void> postQuote() async {
     try {
-      QuoteRemote quote_testing = QuoteRemote(
-          id: null,
-          desc_ar: 'houssam quote',
-          desc_en: 'houssam quote 2',
-          source_ar: 'houssam bouzidi',
-          source_en: 'houssam bouzidi',
-          category_id: 4);
+      Quote quote_testing = Quote(
+        id: null,
+        desc_ar: 'houssam quote',
+        desc_en: 'houssam quote 2',
+        source_ar: 'houssam bouzidi',
+        source_en: 'houssam bouzidi',
+        category_id: 4,
+      );
       // Use the Dio instance to send a POST request
       Response response = await _dio.post(
-        'http://192.168.8.102/api/quotes',
-        data: quote_testing
-            .toJson(), // Assuming QuoteRemote has a toJson() method
+        Routes.quotes,
+        data: quote_testing.toJson(), // Assuming Quote has a toJson() method
         options: Options(
           headers: {
             // 'Authorization': 'Bearer YourAccessToken',
