@@ -1,6 +1,5 @@
 import 'package:counter_getx/models/Category.dart';
 import 'package:counter_getx/models/Theme.dart';
-import 'package:flutter/foundation.dart';
 
 class User {
   final int? id;
@@ -19,13 +18,32 @@ class User {
     this.password,
     this.email,
     this.birth_date,
-    required this.nationality,
+    this.nationality,
     required this.gender,
     this.status,
     required this.type,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
+    print("id" +
+        json['id'].toString() +
+        "user_name" +
+        json['user_name'].toString() +
+        "password" +
+        json['password'].toString() +
+        "email" +
+        json['email'].toString() +
+        "birth_date" +
+        json['birth_date'].toString() +
+        "nationality" +
+        json['nationality'].toString() +
+        "gender" +
+        json['gender'].toString() +
+        "status" +
+        json['status'].toString() +
+        "type" +
+        json['type'].toString());
+
     return User(
       id: json['id'],
       user_name: json['user_name'],

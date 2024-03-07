@@ -20,7 +20,7 @@ class HomeController extends GetxController {
 
   @override
   Future<void> onInit() async {
-    //   await PostQuotes();
+    // await postUser();
     await fetchQuotes();
     super.onInit();
   }
@@ -65,11 +65,16 @@ class HomeController extends GetxController {
     isLoading.value = true;
     try {
       UserItem userItem = await _userRepository.storeUser({
-        'user_name': 'usernameController.text',
+        'user_name': usernameController.text,
         'gender': 'male',
         'type': 'client',
-        'category_id': 1,
+        'status': 'free',
+        'category_id': 3,
         'theme_id': 1,
+        // 'email': 'belmokhtaridir@gmail.com',
+        // 'password': '123456789',
+        // 'birth_date': '2000-12-12',
+        // 'nationality': 'algeria'
       });
       user = userItem;
     } catch (e) {

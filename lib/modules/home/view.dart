@@ -1,3 +1,4 @@
+import 'package:counter_getx/modules/categories/view.dart';
 import 'package:counter_getx/modules/home/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -111,8 +112,8 @@ class _HomeQuotesScreenState extends State<HomeQuotesScreen>
                                           ),
                                         ),
                                       ),
-                                      const Text(
-                                        '- nilson mandila',
+                                      Text(
+                                        homeController.quotes[index].source_ar,
                                         style: TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold,
@@ -158,11 +159,65 @@ class _HomeQuotesScreenState extends State<HomeQuotesScreen>
                                     ),
                                   ),
                                 ],
-                              )
+                              ),
                             ],
                           ),
                         );
                       },
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 20, left: 20),
+                      child: Row(
+                        children: [
+                          FloatingActionButton.extended(
+                            backgroundColor:
+                                const Color.fromARGB(255, 248, 163, 163),
+                            icon: const Icon(
+                              Icons.category,
+                              color: Colors.black,
+                            ),
+                            label: Text(
+                              "homeController.user.category!.category.name",
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 25,
+                              ),
+                            ),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CategoriesScreen()),
+                              );
+                            },
+                          ),
+                          const SizedBox(
+                            width: 130,
+                          ),
+                          FloatingActionButton(
+                            backgroundColor: Colors.white,
+                            onPressed: () {},
+                            child: const Icon(
+                              Icons.palette,
+                              color: Colors.black,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          FloatingActionButton(
+                            backgroundColor: Colors.white,
+                            onPressed: () {},
+                            child: const Icon(
+                              Icons.person,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   if (homeController.is_fav.value)

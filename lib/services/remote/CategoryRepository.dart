@@ -1,14 +1,12 @@
-import 'dart:convert';
-
-import 'package:counter_getx/models/User.dart';
+import 'package:counter_getx/models/Category.dart';
 import 'package:dio/dio.dart';
 
 import '../../core/values/routes.dart';
 
-class UserRepository {
+class CategoryRepository {
   final Dio _dio = Dio();
 
-  Future<UserItem> GetUserById(int id) async {
+  Future<List<Category>> fetchCategories() async {
     try {
       Map<String, dynamic> headers = {
         // 'Authorization': 'Bearer YourAccessToken',
@@ -17,54 +15,58 @@ class UserRepository {
       };
       // for emolator
       // Response response = await _dio.get(
-      //   'http://10.0.2.2/api/Users',
+      //   'http://10.0.2.2/api/categories',
       //   options: Options(
       //     headers: headers,
       //   ),
       // );
       // for real device
       Response response = await _dio.get(
-        '${Routes.users}/$id',
+        Routes.categories,
         options: Options(
           headers: headers,
         ),
       );
-      print('response : ${response.data}');
-      UserItem user = UserItem.fromJson(response.data['data']);
-      return user;
+      // print('response : ${response.data}');
+      List<Category> categories = (response.data['data'] as List)
+          .map((json) => Category.fromJson(json))
+          .toList();
+      return categories;
     } catch (e) {
-      throw Exception('Failed to get User by id ');
+      throw Exception('Failed to fetch categories');
     }
   }
 
-  Future<UserItem> storeUser(Map<String, dynamic> user) async {
+  Future<void> postCategories() async {
     try {
+      Category categories_testing =
+          Category(
+            id: 1,
+            name: "name", 
+            logo: "logo", 
+            isFree: 1, 
+            type: "theme");
       // Use the Dio instance to send a POST request
-      print(user.toString());
       Response response = await _dio.post(
-        Routes.users,
-        data: user, // Assuming User has a toJson() method
+        Routes.categories,
+        data: categories_testing.toJson(), // Assuming Quote has a toJson() method
         options: Options(
           headers: {
             // 'Authorization': 'Bearer YourAccessToken',
-            // 'Content-Type': 'application/json',
+            'Content-Type': 'application/json',
             'Accept': 'application/json',
           },
         ),
       );
-      print('before :' + response.data.toString());
+
       // Handle the response (if needed)
-      UserItem user_data = UserItem.fromJson(response.data['data']);
-      print('end :' + user_data.user.user_name);
       if (response.statusCode == 201) {
         print('POST request successful');
-        return user_data;
       } else {
-        print('Error 1: ${response.statusCode}');
-        return user_data;
+        print('Error: ${response.statusCode}');
       }
     } catch (e) {
-      print('Error 2: $e');
+      print('Error: $e');
       throw e; // Rethrow the error to be caught by the calling function
     }
   }

@@ -144,6 +144,14 @@ class OnboardingPage extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
+          // CustomButton(
+          //   icon: const Icon(Icons.slow_motion_video_sharp),
+          //   label: 'Start',
+          //   onPressed: () {
+          //     homeController.postUser();
+          //     Get.to(() => HomeQuotesScreen());
+          //   },
+          // )
         ],
       ),
     );
