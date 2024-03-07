@@ -13,10 +13,10 @@ class OnboardingPage extends StatelessWidget {
   HomeController homeController = Get.put(HomeController());
 
   OnboardingPage({
-    Key? key,
+    super.key,
     required this.index,
     required this.pageInfo,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

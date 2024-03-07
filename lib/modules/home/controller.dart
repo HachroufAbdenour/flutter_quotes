@@ -1,10 +1,6 @@
-import 'dart:ffi';
-
 import 'package:counter_getx/models/Category.dart';
-import 'package:counter_getx/models/Quote.dart';
 import 'package:counter_getx/models/User.dart';
 import 'package:counter_getx/models/Theme.dart' as ITheme;
-import 'package:counter_getx/services/remote/QuoteRepository.dart';
 import 'package:counter_getx/services/remote/ThemeRepository.dart';
 import 'package:counter_getx/services/remote/UserRepository.dart';
 import 'package:counter_getx/services/remote/CategoryRepository.dart';
@@ -104,7 +100,7 @@ class HomeController extends GetxController {
         'user_name': usernameController.text,
         'gender': gender.value,
         'type': 'client',
-        'category_id': 1,
+        'category_id': 10,
         'theme_id': 2,
       });
       fetchedCategoryName.value = userItem.category.category.name;
