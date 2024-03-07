@@ -1,8 +1,12 @@
+import 'package:counter_getx/core/values/api_key.dart';
 import 'package:counter_getx/modules/onboarding/view.dart';
 import 'package:flutter/material.dart';
+// import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  // Stripe.publishableKey = ApiKeys.pusblishableKey;
   runApp(const MyApp());
 }
 
