@@ -1,12 +1,13 @@
 import 'package:counter_getx/modules/home/controller.dart';
-import 'package:counter_getx/modules/home/widgets/bottom_slide_dialog_category.dart';
-import 'package:counter_getx/modules/home/widgets/bottom_slide_dialog_theme.dart';
+import 'package:counter_getx/modules/home/widgets/bottom_sheet_filter_quote_category.dart';
+import 'package:counter_getx/modules/home/widgets/bottom_sheet_filter_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 class HomeQuotesScreen extends StatefulWidget {
+  const HomeQuotesScreen({super.key});
   @override
   State<HomeQuotesScreen> createState() => _HomeQuotesScreenState();
 }
@@ -186,22 +187,19 @@ class _HomeQuotesScreenState extends State<HomeQuotesScreen>
                           Icons.category,
                           color: Colors.black,
                         ),
-                        label: Text(
-                          homeController.fetchedCategoryName.value,
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
+                        label: Obx(
+                          () => Text(
+                            homeController.fetchedCategoryName.value,
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 25,
+                            ),
                           ),
                         ),
                         onPressed: () {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return BottomSlideDialogCategory(
-                                options: homeController.categories,
-                              );
-                            },
-                          );
+                          showCategorySheet(
+                              context: context,
+                              options: homeController.categories);
                         },
                       ),
                     ),
@@ -218,14 +216,9 @@ class _HomeQuotesScreenState extends State<HomeQuotesScreen>
                           FloatingActionButton(
                             backgroundColor: Colors.white,
                             onPressed: () {
-                              showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return BottomSlideDialogTheme(
-                                    options: homeController.themes,
-                                  );
-                                },
-                              );
+                              showThemeSheet(
+                                  context: context,
+                                  options: homeController.themes);
                             },
                             child: const Icon(
                               Icons.palette,
