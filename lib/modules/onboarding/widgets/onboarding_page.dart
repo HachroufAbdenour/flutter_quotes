@@ -37,7 +37,7 @@ class OnboardingPage extends StatelessWidget {
                   label: 'Start',
                   onPressed: () {
                     homeController.postUser();
-                    Get.to(() => HomeQuotesScreen());
+                    Get.to(() => const HomeQuotesScreen());
                   },
                 )
               : index == 2

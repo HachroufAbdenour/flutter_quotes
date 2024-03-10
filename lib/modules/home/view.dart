@@ -2,7 +2,6 @@ import 'package:counter_getx/modules/home/controller.dart';
 import 'package:counter_getx/modules/home/widgets/bottom_sheet_filter_quote_category.dart';
 import 'package:counter_getx/modules/home/widgets/bottom_sheet_filter_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 

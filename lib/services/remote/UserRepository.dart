@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:counter_getx/models/User.dart';
 import 'package:dio/dio.dart';

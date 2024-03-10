@@ -22,7 +22,7 @@ class CustomTextField extends StatelessWidget {
         controller: homeController.usernameController,
         decoration: InputDecoration(
           labelText: labelText,
-          border: OutlineInputBorder(),
+          border: const OutlineInputBorder(),
         ),
       ),
     );

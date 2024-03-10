@@ -17,7 +17,7 @@ void showThemeSheet({context, required List<ITheme.Theme> options}) {
             body: SingleChildScrollView(
               child: Container(
                 color: Colors.white,
-                padding: EdgeInsets.symmetric(vertical: 0, horizontal: 5),
+                padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 5),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[

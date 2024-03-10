@@ -1,6 +1,5 @@
 import 'package:counter_getx/models/Category.dart';
 import 'package:counter_getx/models/Theme.dart';
-import 'package:flutter/foundation.dart';
 
 class User {
   final int? id;

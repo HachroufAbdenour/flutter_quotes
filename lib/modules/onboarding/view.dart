@@ -2,7 +2,6 @@ import 'package:counter_getx/modules/onboarding/widgets/onboarding_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:counter_getx/modules/onboarding/controller.dart';
 
 class PageInfo {
   final String title;

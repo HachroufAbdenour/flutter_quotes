@@ -17,7 +17,7 @@ void showCategorySheet({context, required List<Category> options}) {
             body: SingleChildScrollView(
               child: Container(
                 color: Colors.white,
-                padding: EdgeInsets.symmetric(vertical: 0, horizontal: 5),
+                padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 5),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[

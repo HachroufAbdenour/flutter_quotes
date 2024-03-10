@@ -58,7 +58,7 @@ class _CustomGenderFieldState extends State<CustomGenderField> {
                       });
                     },
                   ),
-                  Text('Female'),
+                  const Text('Female'),
                 ],
               ),
             ),
